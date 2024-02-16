@@ -1,0 +1,130 @@
+<link rel="stylesheet" href="/css/posts.css">
+
+
+
+<body id="post-body">
+    <div class="post-container">
+        <div class="heading-container">
+            <a class="allPosts" href="all">
+                All Posts
+            </a>
+            <hr>
+            <a href="myposts">My Posts</a>
+            <hr>
+            <a href="savedposts">Saved Posts</a>
+        </div>
+
+
+
+        <%
+            if(posts && posts.length>0){
+                if(showFilter==true){
+                %>
+                <div class="filter" id="filter_element">
+                    <i class="fa-solid fa-filter" id="filtericon"  title="filter posts"></i>
+                </div>
+                <form action="filter" method="post">
+                 <input type="text" name="filter_keyword" id="filter_keyword" placeholder="Filter Posts on the basis of caption keywords or User name...">
+                </form>
+
+                <%
+            }
+            posts.forEach((curr)=>{
+                %>
+                
+                <input type="text" value="<%= curr.userId %>" name="posted-user" hidden>
+                <input type="text" value="<%= locals.userId %>" name="logged-in-user" hidden>
+                    
+                <div class="card post-card" style="width: 18rem;">
+
+                    <div class="card-header">
+                        <p id="user-name">
+                            <%=curr.userName%>
+                        </p>
+
+                        <div class="actions">
+                            
+                            
+                            <%
+                                if(curr.saved==true){
+                            %>
+                                    <form action="save" method="post">
+                                        <button>
+                                            <input type="text" value="<%=curr.id %>" name="postid" hidden>
+                                            <input type="text" value="<%=locals.userId %>" name="userid" hidden>
+                                            <i class="fa-solid fa-bookmark"></i>
+                                        </button>
+                                    </form>
+
+                                    <%
+                                }
+                                else{
+                                    %>
+                                    <form action="save" method="post">
+                                        <button>
+                                            <input type="text" value="<%=curr.id %>" name="postid" hidden>
+                                            <input type="text" value="<%=locals.userId %>" name="userid" hidden>
+                                            <i class="fa-regular fa-bookmark"></i>
+                                        </button>
+                                    </form>
+                                    <%
+                                }
+
+
+                                if(curr.userId==locals.userId){
+                                    %>
+                                        <form method="post" action="update/<%=curr.id %>">
+                                            <button><i class="fa-solid fa-pen"></i></button>
+                                        </form>
+                                        <form method="post" action="delete/<%=curr.id %>">
+                                            <button><i class="fa-solid fa-trash"></i></button>
+                                        </form>
+                                    <%
+                                }
+                            %>
+                          </div>
+                    </div>
+
+                    <img src="/Images/<%= curr.imageUrl %>" alt="">
+                    <div class="card-body">
+                      <h5 class="card-title" id="caption"> <%= curr.caption %> </h5>
+                      <div id="actions">
+                        <div id="comments">
+                            <a href="../comments/<%=curr.id %>">
+                                <i class="fa-solid fa-comment"></i>
+                            </a>
+                        </div>
+                        <div id="likes">
+                            <a href="../likes/<%=curr.id %>">
+                                <i class="fa-regular fa-heart"></i>
+                            </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                <%
+            })
+            }
+            else{
+
+                %>
+                    <p id="no_post_found">No Post Found</p>
+                <%
+            }
+        %>
+    </div>
+
+    <script>
+
+        let filterElement = document.querySelector('#filter_element');
+        let filterInput = document.querySelector('#filter_keyword');
+        let filterIcon = document.querySelector('#filtericon');
+        filterElement.addEventListener('click',()=>{
+            filterIcon.style.display = 'none';
+            filterInput.style.display = 'block';
+            filterInput.focus();
+        });
+    </script>
+
+</body>

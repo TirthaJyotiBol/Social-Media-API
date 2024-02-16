@@ -1,0 +1,105 @@
+#likes-body{
+    background-color: rgb(2, 0, 36);
+    color: aliceblue;
+}
+
+h1{
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 25px;
+    margin-left: 25px;
+    text-transform: uppercase;
+}
+
+.image-posted {
+    margin: auto;
+}
+
+.image-posted img{
+    height: 68vh;
+    width: 50vw;
+    margin-left: 25%;
+    margin-top: 45px;
+    border-radius: 24px;
+}
+
+#caption{
+    text-align: center;
+    font-size: 1.3rem;
+    margin-top: 8px;
+    font-weight: bold;
+}
+
+
+#no-likes{
+    text-align: center;
+    margin-top: 15px;
+    text-transform: uppercase;
+    margin-left: 22px;
+}
+
+.likes-container{
+    margin: auto;
+    margin-top: 15px;
+    margin-left: 42.5%;
+}
+
+.like-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15vw;
+    border: 1px solid rgb(77, 77, 77);
+    margin: 15px;
+    padding-top: 7px;
+}
+
+.user-liked{
+    text-align: center;
+    padding: 4px;
+    font-size: 1.3rem;
+}
+.like-box form{
+    margin-top: -12px;
+}
+.like-box button{
+    border: none;
+    background-color: transparent;
+    color: white;
+    margin-top: -12px;
+    margin-left: 4px;
+    color: red;
+}
+
+.like-button{
+    width: 120px;
+    border: none;
+    margin-left: 46%;
+}
+
+.like-button button{
+    width: 120px;
+    padding: 8px;
+    border: none;
+    border-radius: 18px;
+    transition: 0.4s ease-in-out;
+    text-transform: uppercase;
+}
+
+.transparent-colour{
+    border: 2px solid red !important;
+    color: red;
+    background: transparent;
+    transition: 0.4s ease-in-out;
+}
+
+.transparent-colour:hover{
+    background-color: rgb(255, 0, 0);
+    color: white;
+}
+
+.red-colour{
+    border: 2px solid red !important;
+    background-color: rgb(255, 0, 0);
+    color: white;
+}

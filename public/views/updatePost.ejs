@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="/css/uploadform.css">
+
+<body class="uploadform-container">
+
+    <h1>Update Post</h1>
+    <form method="post" action="../updatepost/<%= currentPost.id %>" id="upload-post-form" enctype="multipart/form-data">
+        <input type="text" value="<%= userId %>"  name="userId" hidden disabled>
+        <input type="text" name="postId" value="<%= currentPost.id %>" hidden disabled>
+
+        <div class="mb-3">
+          <label for="caption" class="form-label">Caption</label>
+          <input type="text" name="caption" value="<%= currentPost.caption %>" class="form-control" id="caption" aria-describedby="emailHelp">
+          <%
+                if(errArray){
+                  let check = errArray.find((curr)=>{
+                    return curr.path==='caption';
+                  })
+                  if(check){
+                %>
+                  <p class="error-message"> <%= check.msg %> </p>
+                <%
+                  }
+                }
+           %> 
+
+        </div>
+        <div class="mb-3">
+          <label for="image" class="form-label">Image</label>
+          <input type="file" class="form-control" id="image" name="image">
+            
+          <%
+                if(errArray){
+                  let check = errArray.find((curr)=>{
+                    return curr.path==='image';
+                  })
+                  if(check){
+                %>
+                  <p class="error-message"> <%= check.msg %> </p>
+                <%
+                  }
+                }
+           %>
+ 
+        </div>
+        <button type="submit" class="btn btn-primary upload-btn">Update</button>
+      </form>
+</body>

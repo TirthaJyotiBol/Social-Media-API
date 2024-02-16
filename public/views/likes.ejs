@@ -1,0 +1,85 @@
+<link rel="stylesheet" href="/css/likes.css">
+<body id="likes-body">
+    
+    <%
+        if(post){
+            console.log(post);
+        }
+    %>
+
+    <div class="image-posted">
+        <img src="/Images/<%= post.imageUrl %>" alt="">
+        <p id="caption">
+            <%= post.caption %></p>
+    </div>
+
+        <!-- check if the user liked the posr or not -->
+
+        <form action="toggle/<%= post.id %>" method="post" class="like-button">
+            <input type="text" name="userid" id="userid" value="<%=locals.userId%>" hidden>
+
+            <%
+                let check = likedUser.find((curr)=>{
+                    return curr.userId == locals.userId
+                });
+
+                if(!check){
+                    %>  
+                    <button type="submit" class="transparent-colour">Like</button>
+                    <%
+                }
+                else{
+                    %>
+                    <button type="submit" class="red-colour">Liked</button>
+                    <%
+                }
+            %>
+        
+        
+        </form>
+
+    <h1>
+        Likes
+    </h1>
+
+    <%
+            if(likedUser.length==0){
+                %>
+                    <p id="no-likes">
+                        No Likes
+                    </p>
+                <%
+            }
+    %>
+
+    <div class="likes-container">
+
+        <%
+            likedUser.forEach((currUser)=>{
+                let userWhoLiked = currUser.userId;
+        %>
+            <div class="like-box">
+                <p class="user-liked">
+                    <%= currUser.userName %>
+                </p>
+                
+                <%
+                    if(locals.userId===userWhoLiked){
+                        %>
+                        <form action="delete/<%=currUser.likeId %>" method="post">
+                            <input type="text" name="postid" value="<%= currUser.postId %>" hidden>
+                            <button id="remove-like-button">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
+                        <%
+                    }
+                %>
+
+            </div>
+        <%
+
+            })
+        %>
+    </div>
+</body>

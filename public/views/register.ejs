@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="/css/register.css">
+
+<body>
+  
+  
+
+    <h3 id="form-heading">Registration Form</h3>
+    <form id="form-register" method="post" action="signup" >
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name="name" placeholder="Enter Name">
+            <%
+                if(errors){
+                  let check = errors.find((curr)=>{
+                    return curr.path==='name';
+                  })
+                  if(check){
+                %>
+                  <p class="error-message"> <%= check.msg %> </p>
+                <%
+                  }
+                }
+           %>
+          </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" placeholder="Enter Email">
+          <%
+              if(errors){
+                let check = errors.find((curr)=>{
+                  return curr.path==='email';
+                })
+                if(check){
+              %>
+                <p class="error-message"> <%= check.msg %> </p>
+              <%
+                }
+              }
+          %>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="text" class="form-control" id="password" placeholder="Enter Your Password" name="password">
+          <%
+                if(errors){
+                  let check = errors.find((curr)=>{
+                    return curr.path==='password';
+                  })
+                  if(check){
+                %>
+                  <p class="error-message"> <%= check.msg %> </p>
+                <%
+                  }
+                }
+           %>
+
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+
+        <span id="alreadyregistered">
+          <p>Already Registered ?</p>
+          <a href="signin"><button type="button" class="btn btn-danger">Login</button></a>
+        </span>
+
+      </form>
+
+</body>

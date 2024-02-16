@@ -1,0 +1,40 @@
+
+#form-register,#form-login{
+    margin: auto;
+    margin-top: 25px;
+    width: 75%;
+}
+
+#form-heading{
+    text-transform: uppercase;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.error-message{
+    color: red;
+    
+}
+
+#alreadyregistered{
+    display: flex;
+    margin-top: 18px;
+}
+
+.btn-primary{
+    width: 280px;
+    margin-left: 38%;
+}
+
+#alreadyregistered p{
+    margin-top: 8px;
+    font-size: 1rem;
+    margin-right: 8px;
+}
+
+#user-not-found{
+    text-align: center;
+    color: rgb(255, 12, 24);
+    font-size: 1.2rem;
+    font-weight: 600;
+}

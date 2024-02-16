@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="/css/comments.css">
+
+<body id="comments-body">
+    
+    <div class="image-posted">
+        <img src="/Images/<%= post.imageUrl %>" alt="">
+        <p id="caption">
+            <%= post.caption %></p>
+    </div>
+
+    <form action="add/<%=post.id%>" method="post" id="add-comment-form">
+        <input name="add_comment" id="add-comment" cols="130" rows="5" placeholder="Add a comment"/>
+        <input type="text" name="userid" id="userid" value="<%= locals.userId %>" hidden>
+        <button type="submit">Add Comment</button>
+    </form>
+
+    <h2>comments</h2>
+
+    
+
+    <div id="comments-container">
+        <%
+        if(comments){
+            if(comments.length==0){
+                %>
+                    <p id="no-comments">No Comments</p>
+                <%
+            }
+            else{
+                comments.forEach((curr)=>{
+                    let userIdWhoCommented = curr.userId;
+                    let userIdWhoPosted = post.userId;
+
+                %>
+                    <div class="comment-card">
+                        <!-- <p id="user-commented">
+                            Tirtha
+                        </p> -->
+                        <p class="comment">
+                           <%= curr.content %>
+                        </p>
+                    
+                            <div class="actions">
+                                <%
+                                if(userIdWhoCommented===userIdWhoPosted || locals.userId===userIdWhoCommented){
+
+                                    %>
+                                        <a id="delete-comment" href="delete/<%=curr.id%>&<%=post.id%>">Delete</a>
+                                        <form class="update-form-class" id="update-comment-form" action="update/<%=curr.id%>" method="post">
+                                            <button id="update">update</button>
+                                            <input type="text" name="postid" value="<%=post.id%>" hidden>
+                                            <input type="text" id="new_comment" name="new_comment" placeholder="Edit your comment">
+                                        </form>
+                                    <%
+                                }
+
+                                %>
+                          </div>
+                        </div>
+                <%
+            })
+            }
+        }
+    %>
+
+
+    </div>
+
+</body>

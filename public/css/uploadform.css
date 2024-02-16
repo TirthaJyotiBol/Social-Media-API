@@ -1,0 +1,30 @@
+.uploadform-container h1{
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 18px;
+}
+
+.uploadform-container #upload-post-form{
+    width: 45vw;
+    margin: auto;
+    border: 0.6px solid black;
+    padding: 24px;
+    margin-top: 25px;
+}
+
+.error-message{
+    color: red;
+}
+
+.upload-btn{
+    width: 85%;
+    margin-left: 43px;
+    background-color: orange;
+    border: none;
+    border-radius: 15px;
+    padding: 8px;
+}
+
+.upload-btn:hover{
+    background-color: rgb(255, 130, 13);
+}
